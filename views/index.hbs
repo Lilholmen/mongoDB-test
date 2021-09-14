@@ -1,10 +1,28 @@
-<main class='wrapper' id='wrapper'>
-  <section class='section__first'>
-    <div class='first__data'>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio neque iusto
-      sed illum obcaecati nobis ipsum ducimus eos at ex? Commodi veritatis quis
-      totam ut, alias atque corrupti consequatur at.
-    </div>
-    <button class='first__button'>Action!</button>
-  </section>
-</main>
+<h1>Todo page </h1>
+
+{{#if todos.length}}
+  <ul>
+    {{#each todos}}
+      <li class='todo'>
+        <form action='/complete' method='post'>
+          <label>
+
+            {{#if completed}}
+              <input type='checkbox' checked name='completed' />
+              <span class='completed'>{{title}}</span>
+            {{else}}
+              <input type='checkbox' name='completed' />
+              <span>{{title}}</span>
+            {{/if}}
+
+            <input type='hidden' value='{{_id}}' name='id' />
+
+            <button class='btn btn-small' type='submit'>Save</button>
+          </label>
+        </form>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No Todos!</p>
+{{/if}}

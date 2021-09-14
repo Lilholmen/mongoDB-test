@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const expressHandlebars = require('express-handlebars');
 const testRoutes = require('./routes/app');
 
@@ -14,6 +15,9 @@ const hbs = expressHandlebars.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(testRoutes);
 
